@@ -1,4 +1,3 @@
-// importa o módulo axios e define a api externa para busca de dados
 import axios from 'axios'
 
 const pokeapi = axios.create({

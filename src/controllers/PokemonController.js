@@ -4,14 +4,69 @@
 import pokeapi from '../api'
 
 // lista todos os pokémons da primeira geração (Kanto)
-
 const getFromKanto =  async (req, res) => {
-  let external_res = await pokeapi.get('/api/v2/type/2/')  
+  let external_res = await pokeapi.get('/api/v2/pokedex/2/')  
+  let data = external_res.data.pokemon_entries
   
-  let data = external_res.data.pokemon
-
-  console.log(data)
   return res.status(200).json(data)
 }
 
-export { getFromKanto }
+// lista pokémons da primeira geração filtrados pelo tipo selecionado
+
+const getByType = async (req, res) => {
+  let { type } = req.params
+
+  // define os tipos válidos, na ordem apropriada
+  let typeNames = [
+    'normal',
+    'fighting',
+    'flying',
+    'poison',
+    'ground',
+    'rock',
+    'bug',
+    'ghost',
+    'steel',
+    'fire',
+    'water',
+    'grass',
+    'electric',
+    'psychic',
+    'ice',
+    'dragon',
+    'dark',
+    'fairy',
+    'unknown',
+    'shadow'
+  ]
+  
+  // verifica se o texto passado como 'type' pelo URL é um dos 18 tipos válidos e "traduz"
+  // esse texto para o ID do tipo apropriado para realizar a request por tipo
+
+  for (let i = 0; i < typeNames.length; i++) {
+    if (typeNames[i] == type) {
+      type = (i+1).toString()
+    }
+  }
+  let external_res = await pokeapi.get(`/api/v2/type/${type}`)
+  let pokemons = external_res.data.pokemon
+
+  let gen1 = []
+
+  // lê todos os pokemons do array e verifica, através dos seus IDs, se eles são da gen1 (1-151)
+  // e os adiciona a um array de pokemons válidos
+
+  for (let i = 0; i < pokemons.length; i++) {
+    var url = pokemons[i].pokemon.url.slice(0, -1)
+    let poke_id = url.split('/').pop()
+  
+    for (let j = 0; j <= 151; j++) { 
+      if (poke_id == j) {
+        gen1.push(pokemons[i])
+      }
+    }
+  }
+  return res.status(200).json(gen1)
+}
+
+export { getFromKanto, getByType }
