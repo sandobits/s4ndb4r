@@ -1,13 +1,9 @@
+// rotas da api base
 import { Router } from 'express'
-import api from './api'
+import * as PokemonController from './controllers/PokemonController'
 
 const router = Router()
 
-router.get('/', async (req, res) => {
-  let api_res = await api.get('/api/v2/pokedex/2/')  
-  
-  console.log(api_res.data.pokemon_entries)
-  return res.status(200).json(api_res.data.pokemon_entries)
-})
+router.get('/', PokemonController.getFromKanto)
 
 export default router
