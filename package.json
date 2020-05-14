@@ -1,5 +1,5 @@
 {
-  "name": "desafio_mercadou",
+  "name": "s4ndb4r",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,6 +20,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/register": "^7.9.0",
+    "eslint": "^7.0.0",
     "nodemon": "^2.0.4"
   }
 }
