@@ -1,4 +1,4 @@
-# Desafio Mercadou: s4ndb4r
+# Desafio: s4ndb4r
 
 Para entender o desafio, clique [aqui](https://ps-mercadou.firebaseapp.com/).
 
