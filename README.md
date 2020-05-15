@@ -2,7 +2,18 @@
 
 Para entender o desafio, clique [aqui](https://ps-mercadou.firebaseapp.com/).
 
-## Rodando a API
+## Acessando a API
+
+A API pode ser acessada diretamente em `s4ndb4r.herokuapp.com`.
+Atualmente ela conta com as seguintes rotas de acesso:
+
+  METHOD |ENDPOINT        | OUTPUT  |
+:-------:|:---------------|:--      |
+GET      | /              | Lista os Pokémons de Kanto
+GET      | /type/:type    | Lista os Pokémons de Kanto filtrados por tipo
+GET      | /view/:poke_id | Lista algumas informações sobre um Pokémon específico
+
+## Rodando a API para acesso local
 
 ```sh
 $ git clone https://github.com/sandobits/s4ndb4r.git
