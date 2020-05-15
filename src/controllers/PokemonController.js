@@ -36,8 +36,6 @@ const getByType = async (req, res) => {
     'dragon',
     'dark',
     'fairy',
-    'unknown',
-    'shadow'
   ]
   
   // verifica se o parametro é texto, e caso seja, se está na lista de types validos
@@ -46,7 +44,6 @@ const getByType = async (req, res) => {
       return res.status(400).json(`Invalid type: ${type}`)
     }
   }
-
   // verifica se o parametro (numerico) está entre 1 e quantos tipos válidos a lista contiver, neste caso 18
   if (type < 1 || type > typeNames.length) {
     return res.status(400).json(`Invalid type: ${type}`)
