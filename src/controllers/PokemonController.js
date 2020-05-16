@@ -9,7 +9,7 @@ import pokeapi from '../api'
 const getFromKanto =  async (req, res) => {
   let external_res = await pokeapi.get('/api/v2/pokedex/2/')  
   let data = external_res.data.pokemon_entries
-  // configura output de cada pokemon
+  // configura output de cada pokemon, usando endereços para a aplicação custom na heroku
   for (let i in data) {
     data[i] = {
       id: data[i].entry_number,
@@ -85,7 +85,7 @@ const getByType = async (req, res) => {
 }
 
 // detalha único pokémon, a partir do ID 
-const view = async (req, res) => {
+const viewSingle = async (req, res) => {
   let { poke_id } = req.params
   
   if (isNaN(parseInt(poke_id))){
@@ -98,10 +98,17 @@ const view = async (req, res) => {
     return res.status(400).json(`Pokémon does not belong in Kanto region: ${pokemon.name}`)
   }
 
+  // formata informações sobre o tipo do pokémon, incluindo URL para API local
+  let types = pokemon.types
+  for (let i in types){
+    let name = types[i].type.name
+    let url = `https://s4ndb4r.herokuapp.com/type/${types[i].type.name}`
+    types[i] = { name, url }
+  }
   let pokedata = {
     poke_id: pokemon.id,
     name: pokemon.name,
-    shape: pokemon.shape,
+    types: types,
     height: pokemon.height,
     weight: pokemon.weight,
     sprites: {
@@ -115,4 +122,4 @@ const view = async (req, res) => {
   return res.status(200).json(pokedata)
 }
 
-export { getFromKanto, getByType, view }
+export { getFromKanto, getByType, viewSingle }
