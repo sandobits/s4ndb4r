@@ -9,6 +9,15 @@ import pokeapi from '../api'
 const getFromKanto =  async (req, res) => {
   let external_res = await pokeapi.get('/api/v2/pokedex/2/')  
   let data = external_res.data.pokemon_entries
+  // configura output de cada pokemon
+  for (let i in data) {
+    data[i] = {
+      id: data[i].entry_number,
+      name: data[i].pokemon_species.name,
+      details: `http://s4ndb4r.herokuapp.com/pokemon/${data[i].entry_number}`,
+      front: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data[i].entry_number}.png`
+    }
+  }
   return res.status(200).json(data)
 }
 
@@ -85,7 +94,6 @@ const view = async (req, res) => {
 
   let external_res = await pokeapi.get(`/api/v2/pokemon/${poke_id}`)
   let pokemon = external_res.data
-
   if (pokemon.id > 151 || pokemon.id < 1) {
     return res.status(400).json(`Pokémon does not belong in Kanto region: ${pokemon.name}`)
   }
@@ -93,9 +101,15 @@ const view = async (req, res) => {
   let pokedata = {
     poke_id: pokemon.id,
     name: pokemon.name,
+    shape: pokemon.shape,
     height: pokemon.height,
     weight: pokemon.weight,
-    sprite: pokemon.sprites.front_default
+    sprites: {
+      front: pokemon.sprites.front_default,
+      back: pokemon.sprites.back_default,
+      front_shiny: pokemon.sprites.front_shiny,
+      back_shiny: pokemon.sprites.back_shiny,
+    }
   }
 
   return res.status(200).json(pokedata)
