@@ -4,7 +4,7 @@ Para entender o desafio, clique [aqui](https://ps-mercadou.firebaseapp.com/).
 
 ## Acessando a API
 
-A API pode ser acessada diretamente em [`s4ndb4r.herokuapp.com`](s4ndb4r.herokuapp.com).  
+A API pode ser acessada diretamente em [`s4ndb4r.herokuapp.com`](https://s4ndb4r.herokuapp.com).  
 
 ### Rotas
 
