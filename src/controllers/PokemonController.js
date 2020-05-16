@@ -5,6 +5,9 @@
 // de maneira quase idêntica em mais de um local
 import pokeapi from '../api'
 
+const hostBaseUrl = 'https://s4ndb4r.herokuapp.com'
+const spriteBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon'
+
 // lista todos os pokémons da primeira geração (Kanto)
 const getFromKanto =  async (req, res) => {
   let external_res = await pokeapi.get('/api/v2/pokedex/2/')  
@@ -14,8 +17,8 @@ const getFromKanto =  async (req, res) => {
     data[i] = {
       id: data[i].entry_number,
       name: data[i].pokemon_species.name,
-      details: `http://s4ndb4r.herokuapp.com/pokemon/${data[i].entry_number}`,
-      front: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data[i].entry_number}.png`
+      details: `${hostBaseUrl}/pokemon/${data[i].entry_number}`,
+      front: `${spriteBaseUrl}/${data[i].entry_number}.png`
     }
   }
   return res.status(200).json(data)
@@ -67,7 +70,7 @@ const getByType = async (req, res) => {
 
   let external_res = await pokeapi.get(`/api/v2/type/${type}`)
   let pokemons = external_res.data.pokemon
-  let gen1 = []
+  let kanto_pokemons = []
 
   // lê todos os pokemons do array e verifica, através dos seus IDs, se eles são da gen1 (1-151),
   // e os adiciona a um array de pokemons válidos
@@ -75,13 +78,20 @@ const getByType = async (req, res) => {
     var url = pokemons[i].pokemon.url.slice(0, -1)
     let poke_id = url.split('/').pop()
   
+    // caso o pokemon seja um dos 151 iniciais
     for (let j = 0; j <= 151; j++) { 
       if (poke_id == j) {
-        gen1.push(pokemons[i])
+        // formata pokemon 
+        let pokedata = {
+          name: pokemons[i].pokemon.name,
+          url: `${hostBaseUrl}/pokemon/${j}`,
+          front: `${spriteBaseUrl}/${j}.png`
+        }
+        kanto_pokemons.push(pokedata)
       }
     }
   }
-  return res.status(200).json({type: typeNames[type-1], gen1})
+  return res.status(200).json({type: typeNames[type-1], kanto_pokemons})
 }
 
 // detalha único pokémon, a partir do ID 
@@ -102,7 +112,7 @@ const viewSingle = async (req, res) => {
   let types = pokemon.types
   for (let i in types){
     let name = types[i].type.name
-    let url = `https://s4ndb4r.herokuapp.com/type/${types[i].type.name}`
+    let url = `${hostBaseUrl}/type/${types[i].type.name}`
     types[i] = { name, url }
   }
   let pokedata = {
