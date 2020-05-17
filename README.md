@@ -39,4 +39,4 @@ PokemonController, seja modificada pois ela aponta em hardcode para o host da He
 ## Frontend
 
 O repositório do app frontend está [aqui](https://github.com/sandobits/s4ndb4r-react).  
-Alternativamente, o app pode ser acessado diretamente em [`sandobits.github.io`](htpps://sandobits.github.io)
+Alternativamente, o app pode ser acessado diretamente em [`sandobits.github.io`](https://sandobits.github.io)
