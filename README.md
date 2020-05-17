@@ -18,7 +18,7 @@ GET      | /view/:poke_id | Lista algumas informações sobre um Pokémon espec�
 
 PARAM     | TYPES         | EXAMPLE
 ---------:|:-------------:|:--
-:type     | string, int   | /normal
+:type     | string; int   | /normal; /1
 :poke_id  | int           | /151
 
 ## Rodando a API para acesso local
@@ -36,6 +36,7 @@ App running in port 4000
 Aqui os endereços de requisição para as rotas não funcionarão a não ser que a variável `hostBaseUrl`, em  
 PokemonController, seja modificada pois ela aponta em hardcode para o host da Heroku.
 
-## Rodando o frontend
+## Frontend
 
-Coming soon... possivelmente. Vai depender.
+O repositório do app frontend está [aqui](https://github.com/sandobits/s4ndb4r-react).  
+Alternativamente, o app pode ser acessado diretamente em [`sandobits.github.io`](htpps://sandobits.github.io)
