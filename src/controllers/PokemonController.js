@@ -83,6 +83,7 @@ const getByType = async (req, res) => {
       if (poke_id == j) {
         // formata pokemon 
         let pokedata = {
+          id: j,
           name: pokemons[i].pokemon.name,
           url: `${hostBaseUrl}/pokemon/${j}`,
           front: `${spriteBaseUrl}/${j}.png`

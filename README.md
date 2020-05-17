@@ -8,11 +8,12 @@ A API pode ser acessada diretamente em [`s4ndb4r.herokuapp.com`](https://s4ndb4r
 
 ### Rotas
 
-  METHOD |ENDPOINT        | OUTPUT  |
-:-------:|:---------------|:--      |
-GET      | /              | Lista os Pokémons de Kanto
-GET      | /type/:type    | Lista os Pokémons de Kanto filtrados por tipo
-GET      | /view/:poke_id | Lista algumas informações sobre um Pokémon específico
+  METHOD |ENDPOINT            | OUTPUT  |
+:-------:|:-------------------|:--      |
+GET      | /                  | Lista os Pokémons de Kanto
+GET      | /type/:type        | Lista os Pokémons de Kanto filtrados por tipo
+GET      | /type/             | Lista tipos de Pokémon
+GET      | /pokemon/:poke_id  | Lista algumas informações sobre um Pokémon específico
 
 ### Parâmetros
 
@@ -21,7 +22,7 @@ PARAM     | TYPES         | EXAMPLE
 :type     | string; int   | /normal; /1
 :poke_id  | int           | /151
 
-## Rodando a API para acesso local
+## Rodando a API localmente
 
 ```sh
 $ git clone https://github.com/sandobits/s4ndb4r.git
@@ -34,7 +35,7 @@ App running in port 4000
 ```
 
 Aqui os endereços de requisição para as rotas não funcionarão a não ser que a variável `hostBaseUrl`, em  
-PokemonController, seja modificada pois ela aponta em hardcode para o host da Heroku.
+ambos os Controllers, seja modificada, pois ela aponta em hardcode para o host da Heroku.
 
 ## Frontend
 
