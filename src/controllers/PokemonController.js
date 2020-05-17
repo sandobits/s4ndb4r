@@ -1,6 +1,6 @@
 // tradicionalmente incluiriamos aqui os 4 métodos padrão para um recurso: GET, POST, PUT, e DELETE;
-// porém, dado o desafio, todas as requisições GET ficarão aqui temporariamente, e serão abertas em
-// outros controllers conforme necessário
+// porém, dado o desafio, não me parece possível ou necessário manter o padrão à risca, 
+
 // decidi incluir detalhes sobre verificação de valores apenas uma vez, já que alguns foram feitos
 // de maneira quase idêntica em mais de um local
 import pokeapi from '../api'
@@ -10,7 +10,7 @@ const spriteBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/
 
 // lista todos os pokémons da primeira geração (Kanto)
 const getFromKanto =  async (req, res) => {
-  let external_res = await pokeapi.get('/api/v2/pokedex/2/')  
+  let external_res = await pokeapi.get('/pokedex/2/')  
   let data = external_res.data.pokemon_entries
   // configura output de cada pokemon, usando endereços para a aplicação custom na heroku
   for (let i in data) {
@@ -68,7 +68,7 @@ const getByType = async (req, res) => {
     }
   }
 
-  let external_res = await pokeapi.get(`/api/v2/type/${type}`)
+  let external_res = await pokeapi.get(`/type/${type}`)
   let pokemons = external_res.data.pokemon
   let kanto_pokemons = []
 
@@ -102,7 +102,7 @@ const viewSingle = async (req, res) => {
     return res.status(400).json(`Invalid poke_id: ${poke_id}`)
   }
 
-  let external_res = await pokeapi.get(`/api/v2/pokemon/${poke_id}`)
+  let external_res = await pokeapi.get(`/pokemon/${poke_id}`)
   let pokemon = external_res.data
   if (pokemon.id > 151 || pokemon.id < 1) {
     return res.status(400).json(`Pokémon does not belong in Kanto region: ${pokemon.name}`)
