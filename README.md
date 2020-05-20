@@ -5,6 +5,12 @@ Para entender o desafio, clique [aqui](https://ps-mercadou.firebaseapp.com/).
 ## Acessando a API
 
 A API pode ser acessada diretamente em [`s4ndb4r.herokuapp.com`](https://s4ndb4r.herokuapp.com).  
+Os links, caso o repositório seja baixado localmente, ainda apontarão para a API na Heroku.  
+
+## Acessando o Frontend
+
+O repositório do app frontend está [aqui](https://github.com/sandobits/s4ndb4r-react).  
+Alternativamente, o app pode ser acessado diretamente em [`sandobits.github.io`](https://sandobits.github.io)
 
 ### Rotas
 
@@ -33,11 +39,3 @@ $ npm run dev
 [nodemon] starting `node ./server.js`
 App running in port 4000
 ```
-
-Aqui os endereços de requisição para as rotas não funcionarão a não ser que a variável `hostBaseUrl`, em  
-ambos os Controllers, seja modificada, pois ela aponta em hardcode para o host da Heroku.
-
-## Frontend
-
-O repositório do app frontend está [aqui](https://github.com/sandobits/s4ndb4r-react).  
-Alternativamente, o app pode ser acessado diretamente em [`sandobits.github.io`](https://sandobits.github.io)
