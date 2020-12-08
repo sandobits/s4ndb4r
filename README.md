@@ -1,11 +1,11 @@
-# Desafio: s4ndb4r
+# Desafio Estágio #1
 
-Para entender o desafio, clique [aqui](https://ps-mercadou.firebaseapp.com/).
+O desafio proposto para a vaga de estágio como full stack consistiu em utilizar a PokeAPI para filtrar e exibir registros, especificamente os Pokémons da Primeira Geração. Com base nisso e na descrição da vaga, optei por construir uma API própria em Node, uma vez que eu não tinha experiência com React até aquele momento.
 
 ## Acessando a API
 
 A API pode ser acessada diretamente em [`s4ndb4r.herokuapp.com`](https://s4ndb4r.herokuapp.com).  
-Os links, caso o repositório seja baixado localmente, ainda apontarão para a API na Heroku.  
+Os links, caso o repositório seja baixado localmente, ainda apontarão para a API na Heroku, e deverão ser alterados para uso local.  
 
 ## Acessando o Frontend
 
